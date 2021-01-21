@@ -1,6 +1,7 @@
 [submodule "curl"]
 	path = curl
 	url = https://github.com/MyFiziqApp/curl.git
+	branch = curl-7_60_0
 [submodule "openssl"]
 	path = openssl
 	url = https://github.com/openssl/openssl.git
