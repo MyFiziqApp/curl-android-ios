@@ -35,8 +35,8 @@ OLD_CURL_CSOURCES := \
 	vauth/krb5_sspi.c vauth/ntlm_sspi.c vauth/ntlm.c vauth/oauth2.c \
 	vauth/spnego_gssapi.c vauth/spnego_sspi.c vauth/vauth.c
 LOCAL_PATH := $(call my-dir)
-CURL_CSOURCES := $(wildcard $(LOCAL_PATH)/../../curl/lib/*.c) $(wildcard $(LOCAL_PATH)/../../curl/lib/vtls/*.c) $(wildcard $(LOCAL_PATH)/../../curl/lib/vauth/*.c)
-CURL_LOCAL_SRC_FILES := $(addprefix ../../curl/lib/,$(CURL_CSOURCES))
+CURL_LOCAL_SRC_FILES := $(wildcard $(LOCAL_PATH)/../../curl/lib/*.c) $(wildcard $(LOCAL_PATH)/../../curl/lib/vtls/*.c) $(wildcard $(LOCAL_PATH)/../../curl/lib/vauth/*.c)
+CURL_LOCAL_SRC_FILES := $(subst jni/, ,$(CURL_CSOURCES))
 CURL_LOCAL_C_INCLUDES += \
   $(LOCAL_PATH)/../../curl/include \
   $(LOCAL_PATH)/../../curl/lib \
