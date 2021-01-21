@@ -11,7 +11,7 @@ CURL_COMMON_CFLAGS += \
   -Wendif-labels -Wstrict-prototypes -Wdeclaration-after-statement \
   -Wno-system-headers -Wno-typedef-redefinition -Wno-unused-variable \
   -Wno-unused-function
-CURL_CSOURCES := \
+OLD_CURL_CSOURCES := \
   amigaos.c asyn-ares.c asyn-thread.c base64.c conncache.c \
   connect.c content_encoding.c cookie.c curl_addrinfo.c curl_ctype.c curl_des.c \
   curl_endian.c curl_fnmatch.c curl_gethostname.c curl_gssapi.c curl_memrchr.c \
@@ -34,6 +34,8 @@ CURL_CSOURCES := \
 	vauth/cram.c vauth/digest.c vauth/digest_sspi.c vauth/krb5_gssapi.c \
 	vauth/krb5_sspi.c vauth/ntlm_sspi.c vauth/ntlm.c vauth/oauth2.c \
 	vauth/spnego_gssapi.c vauth/spnego_sspi.c vauth/vauth.c
+LOCAL_PATH := $(call my-dir)
+CURL_CSOURCES := $(wildcard $(LOCAL_PATH)/../../curl/lib/*.c) $(wildcard $(LOCAL_PATH)/../../curl/lib/vtls/*.c) $(wildcard $(LOCAL_PATH)/../../curl/lib/vauth/*.c)
 CURL_LOCAL_SRC_FILES := $(addprefix ../../curl/lib/,$(CURL_CSOURCES))
 CURL_LOCAL_C_INCLUDES += \
   $(LOCAL_PATH)/../../curl/include \
