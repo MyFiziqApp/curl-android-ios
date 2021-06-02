@@ -41,4 +41,3 @@ CURL_LOCAL_C_INCLUDES += \
   $(LOCAL_PATH)/../../curl/include \
   $(LOCAL_PATH)/../../curl/lib \
   $(LOCAL_PATH)/../../openssl/include
-$(warning $(CURL_LOCAL_SRC_FILES))

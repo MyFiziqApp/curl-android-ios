@@ -11,8 +11,14 @@ SSL_CSOURCES := \
   ssl_err.c ssl_err2.c ssl_lib.c ssl_rsa.c ssl_sess.c ssl_stat.c \
   ssl_txt.c t1_clnt.c t1_enc.c t1_ext.c t1_lib.c t1_meth.c t1_reneg.c \
   t1_srvr.c tls_srp.c t1_trce.c
-SSL_LOCAL_SRC_FILES := $(addprefix ../../openssl/ssl/,$(SSL_CSOURCES))
+LOCAL_PATH := $(call my-dir)
+SSL_LOCAL_SRC_FILES := $(filter-out $($(LOCAL_PATH)../../openssl/ssl/*test.c),$(wildcard $(LOCAL_PATH)../../openssl/ssl/*.c))
+SSL_LOCAL_SRC_FILES += $(filter-out $($(LOCAL_PATH)../../openssl/engines/*test.c),$(wildcard $(LOCAL_PATH)../../openssl/engines/*.c))
+SSL_LOCAL_SRC_FILES += $(filter-out $($(LOCAL_PATH)../../openssl/engines/ccgost/*test.c),$(wildcard $(LOCAL_PATH)../../openssl/engines/ccgost/*.c))
+SSL_LOCAL_SRC_FILES := $(subst jni/, ,$(SSL_LOCAL_SRC_FILES))
 SSL_LOCAL_C_INCLUDES := \
   $(LOCAL_PATH)/../../openssl/include \
   $(LOCAL_PATH)/../../openssl \
-  $(LOCAL_PATH)/../../openssl/crypto \
+  $(LOCAL_PATH)/../../openssl/engines \
+  $(LOCAL_PATH)/../../openssl/engines/vendor_defns \
+  $(LOCAL_PATH)/../../openssl/crypto
