@@ -36,8 +36,9 @@ OLD_CURL_CSOURCES := \
 	vauth/spnego_gssapi.c vauth/spnego_sspi.c vauth/vauth.c
 LOCAL_PATH := $(call my-dir)
 CURL_LOCAL_SRC_FILES := $(wildcard $(LOCAL_PATH)/../../curl/lib/*.c) $(wildcard $(LOCAL_PATH)/../../curl/lib/vtls/*.c) $(wildcard $(LOCAL_PATH)/../../curl/lib/vauth/*.c)
-CURL_LOCAL_SRC_FILES := $(subst jni/, ,$(CURL_CSOURCES))
+CURL_LOCAL_SRC_FILES := $(subst jni/, ,$(CURL_LOCAL_SRC_FILES))
 CURL_LOCAL_C_INCLUDES += \
   $(LOCAL_PATH)/../../curl/include \
   $(LOCAL_PATH)/../../curl/lib \
   $(LOCAL_PATH)/../../openssl/include
+$(warning $(CURL_LOCAL_SRC_FILES))
