@@ -11,14 +11,51 @@ SSL_CSOURCES := \
   ssl_err.c ssl_err2.c ssl_lib.c ssl_rsa.c ssl_sess.c ssl_stat.c \
   ssl_txt.c t1_clnt.c t1_enc.c t1_ext.c t1_lib.c t1_meth.c t1_reneg.c \
   t1_srvr.c tls_srp.c t1_trce.c
-LOCAL_PATH := $(call my-dir)
-SSL_LOCAL_SRC_FILES := $(filter-out $($(LOCAL_PATH)../../openssl/ssl/*test.c),$(wildcard $(LOCAL_PATH)../../openssl/ssl/*.c))
-SSL_LOCAL_SRC_FILES += $(filter-out $($(LOCAL_PATH)../../openssl/engines/*test.c),$(wildcard $(LOCAL_PATH)../../openssl/engines/*.c))
-SSL_LOCAL_SRC_FILES += $(filter-out $($(LOCAL_PATH)../../openssl/engines/ccgost/*test.c),$(wildcard $(LOCAL_PATH)../../openssl/engines/ccgost/*.c))
-SSL_LOCAL_SRC_FILES := $(subst jni/, ,$(SSL_LOCAL_SRC_FILES))
+SSL_ENGINES_CSOURCES := \
+  engines/ccgost/e_gost_err.c \
+  engines/ccgost/gost2001.c \
+  engines/ccgost/gost2001_keyx.c \
+  engines/ccgost/gost89.c \
+  engines/ccgost/gost94_keyx.c \
+  engines/ccgost/gost_ameth.c \
+  engines/ccgost/gost_asn1.c \
+  engines/ccgost/gost_crypt.c \
+  engines/ccgost/gost_ctl.c \
+  engines/ccgost/gost_eng.c \
+  engines/ccgost/gost_keywrap.c \
+  engines/ccgost/gost_md.c \
+  engines/ccgost/gost_params.c \
+  engines/ccgost/gost_pmeth.c \
+  engines/ccgost/gost_sign.c \
+  engines/ccgost/gosthash.c \
+  engines/ccgost/gostsum.c \
+  engines/e_4758cca.c \
+  engines/e_4758cca_err.c \
+  engines/e_aep.c \
+  engines/e_aep_err.c \
+  engines/e_atalla.c \
+  engines/e_atalla_err.c \
+  engines/e_capi.c \
+  engines/e_capi_err.c \
+  engines/e_chil.c \
+  engines/e_chil_err.c \
+  engines/e_cswift.c \
+  engines/e_cswift_err.c \
+  engines/e_gmp.c \
+  engines/e_gmp_err.c \
+  engines/e_nuron.c \
+  engines/e_nuron_err.c \
+  engines/e_padlock.c \
+  engines/e_sureware.c \
+  engines/e_sureware_err.c \
+  engines/e_ubsec.c \
+  engines/e_ubsec_err.c
+SSL_LOCAL_SRC_FILES := $(addprefix ../../openssl/ssl/,$(SSL_CSOURCES))
+SSL_LOCAL_SRC_FILES += $(addprefix ../../openssl/,$(SSL_ENGINES_CSOURCES))
 SSL_LOCAL_C_INCLUDES := \
   $(LOCAL_PATH)/../../openssl/include \
   $(LOCAL_PATH)/../../openssl \
+  $(LOCAL_PATH)/../../openssl/crypto \
   $(LOCAL_PATH)/../../openssl/engines \
-  $(LOCAL_PATH)/../../openssl/engines/vendor_defns \
-  $(LOCAL_PATH)/../../openssl/crypto
+  $(LOCAL_PATH)/../../openssl/engines/vendor_defns
+
