@@ -95,8 +95,8 @@ export LDFLAGS="-march=$ARCH -L$SCRIPTPATH/obj/local/armeabi-v7a"
 	--target=arm-linux-androideabi \
 	--with-ssl=$SSLPATH \
 	--enable-static \
+	--enable-verbose \
 	--disable-shared \
-	--disable-verbose \
 	--enable-threaded-resolver \
 	--enable-libgcc \
 	--enable-ipv6
